@@ -1,4 +1,4 @@
-const JSONtasks = `[{
+let JSONtasks = `[{
     "pic": "https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_1280.jpg",
     "taskName": "School: Mon-Fri 7:30-4pm",
     "description": "Kids go to Kindergarten",
@@ -52,3 +52,5 @@ const JSONtasks = `[{
     "description": "Rest & Recover",
     "importance": 0
 }]`;
+
+tasks = JSON.parse(tasks);
