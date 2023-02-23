@@ -55,12 +55,8 @@ for (let val of tasks) {
     </div>
         <ul class="list-group list-group-flush">
         <li class="list-group-item">${val.description}</li>
-        <p class="like">${val.importance}</p>
-        <p class="btn btn-info likeBtn">Importance</p>
-    
-    <div class="e-card-actions e-card-vertical id="hideCard">
-        <p class="btn btn-primary hideBtn">Done</p>
-    </div>
+        <p class="btn btn-info likeBtn">${val.importance}</p>
+        <button class="btn btn-success done-btn" id="done-btn">Done</button>
 </div>
 </div>
 </div>
@@ -72,7 +68,41 @@ let btns = document.getElementsByClassName("likeBtn");
 for (let i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function() {
         tasks[i].importance++;
+        document.getElementsByClassName("likeBtn")[i].innerHTML = tasks[i].importance;
+        if (tasks[i].importance < 2) {
+            console.log("Green"); //if the importance button is less than 2 turns green
+            document.getElementsByClassName("likeBtn")[i].classList.remove("btn-warning");
+            document.getElementsByClassName("likeBtn")[i].classList.remove("btn-danger");
+            document.getElementsByClassName("likeBtn")[i].classList.add("btn-success");
+        } else if (tasks[i].importance < 4) { //if the importance button is less than 4 turns yellow
+            console.log("yellow");
+            document.getElementsByClassName("likeBtn")[i].classList.remove("btn-success");
+            document.getElementsByClassName("likeBtn")[i].classList.remove("btn-danger");
+            document.getElementsByClassName("likeBtn")[i].classList.add("btn-warning");
+        } else if (tasks[i].importance < 6) { //if the importance button is less than 6 turns red
+            console.log("red");
+            document.getElementsByClassName("likeBtn")[i].classList.remove("btn-success");
+            document.getElementsByClassName("likeBtn")[i].classList.remove("btn-warning");
+            document.getElementsByClassName("likeBtn")[i].classList.add("btn-danger");
+            document.getElementsByClassName("card")[i].style.color = "red";
+            document.getElementsByClassName("card")[i].style.backgroundColor = "yellow";
+        } else if (tasks[i].importance >= 6) { //if the importance button is 6 or bigger makes the whole card red
+            console.log("warrning");
+            document.getElementsByClassName("card")[i].style.backgroundColor = "red";
+            document.getElementsByClassName("card")[i].style.color = "black";
+        }
+
         console.log(tasks[i].importance);
         document.getElementsByClassName("like")[i].innerHTML = tasks[i].importance;
     })
+
+
+
+}
+let doneBtn = document.getElementsByClassName("done-btn");
+for (let i = 0; i < doneBtn.length; i++) {
+    doneBtn[i].addEventListener("click", function() {
+        let card = document.getElementsByClassName("card")[i];
+        card.style.display = "none";
+    });
 }
