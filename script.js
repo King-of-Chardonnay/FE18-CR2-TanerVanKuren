@@ -56,7 +56,7 @@ for (let val of tasks) {
         <ul class="list-group list-group-flush">
         <li class="list-group-item">${val.description}</li>
         <p class="btn btn-success likeBtn">${val.importance}</p>
-        <button class="btn btn-danger done-btn" id="done-btn">Done</button>
+        <button class="btn btn-dark done-btn" id="done-btn">Done</button>
 </div>
 </div>
 </div>
